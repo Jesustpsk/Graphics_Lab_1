@@ -1,0 +1,15 @@
+D:\Учеба\Graphics\Graph_1_lab\Graph_1_lab\bin\Debug\Graph_1_lab.exe.config
+D:\Учеба\Graphics\Graph_1_lab\Graph_1_lab\bin\Debug\Graph_1_lab.exe
+D:\Учеба\Graphics\Graph_1_lab\Graph_1_lab\bin\Debug\Graph_1_lab.pdb
+D:\Учеба\Graphics\Graph_1_lab\Graph_1_lab\obj\Debug\Graph_1_lab.csproj.AssemblyReference.cache
+D:\Учеба\Graphics\Graph_1_lab\Graph_1_lab\obj\Debug\Graph_1_lab.csproj.SuggestedBindingRedirects.cache
+D:\Учеба\Graphics\Graph_1_lab\Graph_1_lab\obj\Debug\MainWindow.g.cs
+D:\Учеба\Graphics\Graph_1_lab\Graph_1_lab\obj\Debug\App.g.cs
+D:\Учеба\Graphics\Graph_1_lab\Graph_1_lab\obj\Debug\Graph_1_lab_MarkupCompile.cache
+D:\Учеба\Graphics\Graph_1_lab\Graph_1_lab\obj\Debug\MainWindow.baml
+D:\Учеба\Graphics\Graph_1_lab\Graph_1_lab\obj\Debug\Graph_1_lab.g.resources
+D:\Учеба\Graphics\Graph_1_lab\Graph_1_lab\obj\Debug\Graph_1_lab.Properties.Resources.resources
+D:\Учеба\Graphics\Graph_1_lab\Graph_1_lab\obj\Debug\Graph_1_lab.csproj.GenerateResource.cache
+D:\Учеба\Graphics\Graph_1_lab\Graph_1_lab\obj\Debug\Graph_1_lab.csproj.CoreCompileInputs.cache
+D:\Учеба\Graphics\Graph_1_lab\Graph_1_lab\obj\Debug\Graph_1_lab.exe
+D:\Учеба\Graphics\Graph_1_lab\Graph_1_lab\obj\Debug\Graph_1_lab.pdb

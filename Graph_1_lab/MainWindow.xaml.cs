@@ -461,7 +461,7 @@ namespace Graph_1_lab
             pathGeometry.Figures.Add(pathFigure);
             path.Data = pathGeometry;
             Canvas.Children.Add(path);
-            if(_step != 0 && _phi != 0)
+            if(_step != 0 && _phi != 0 && _phi > 0)
                 while (angle < _phi)
                 {
                     var x = center.X + _a *  Math.Cos(angle)/ angle;
@@ -569,16 +569,20 @@ namespace Graph_1_lab
         }
         private void TextBox_b_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            Slider.Maximum = String.IsNullOrEmpty(TextBoxB.Text) ? 0 : Convert.ToInt32(TextBoxB.Text) * 200;
-            if (String.IsNullOrEmpty(TextBoxA.Text) || String.IsNullOrEmpty(TextBoxB.Text) || String.IsNullOrEmpty(TextBoxStep.Text))
+            if (Int32.TryParse(TextBoxB.Text, out int num))
             {
-                Slider.IsEnabled = false;
-                Slider.Value = 0;
-            }
-            else
-            {
-                Slider.IsEnabled = true;
-                Slider.Value = Slider.Minimum;
+                Slider.Maximum = String.IsNullOrEmpty(TextBoxB.Text) ? 0 : Convert.ToInt32(TextBoxB.Text) * 200;
+                if (String.IsNullOrEmpty(TextBoxA.Text) || String.IsNullOrEmpty(TextBoxB.Text) ||
+                    String.IsNullOrEmpty(TextBoxStep.Text))
+                {
+                    Slider.IsEnabled = false;
+                    Slider.Value = 0;
+                }
+                else
+                {
+                    Slider.IsEnabled = true;
+                    Slider.Value = Slider.Minimum;
+                }
             }
 
             CompleteChanges();

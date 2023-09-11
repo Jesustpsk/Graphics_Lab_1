@@ -29,9 +29,9 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Label Grid.Column="0" Margin="150 0 0 0">a</Label>
+            <Label Grid.Column="0" Margin="148 0 0 0">a</Label>
             <TextBox Name="TextBoxA" Grid.Row="0" Grid.Column="1" Margin="0,0,0,0" TextChanged="TextBox_a_OnTextChanged"></TextBox>
-            <Label Grid.Row="0" Grid.Column="2" Margin="140 0 0 0">Phi</Label>
+            <Label Grid.Row="0" Grid.Column="2" Margin="138 0 0 0">Phi</Label>
             <Label Grid.Row="1" Grid.Column="3" Margin="46 0 0 0">Inf > Phi > 0</Label>
             <TextBox Name="TextBoxB" Grid.Row="0" Grid.Column="3" Margin="0,0,0,0" TextChanged="TextBox_b_OnTextChanged"></TextBox>
             <Label Grid.Row="0" Grid.Column="4" Margin="130 0 0 0">Step</Label>
@@ -43,7 +43,7 @@
             <CheckBox Grid.Row="3" Grid.Column="8" Name="CheckBoxDesignations" IsThreeState="False" IsChecked="True" Height="20" Content="Обозначения" Checked="CBD_OnChecked" Unchecked="CBD_OnUnchecked"/>
             
             <Slider Grid.Row ="7" Grid.Column="0" Orientation="Vertical"
-                    Height="500" Minimum="0" Maximum="1000000"
+                    Height="500" Minimum="-1000000" Maximum="1000000"
                     IsEnabled="False"
                     Margin="140 0 0 0"
                     Name="Slider"

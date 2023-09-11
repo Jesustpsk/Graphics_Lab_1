@@ -13,7 +13,7 @@ namespace Graph_1_lab
     public partial class MainWindow
     {
         private static double _a = 0, _phi = 0, _step = 0;
-        private static bool _axes = true, _rules = true, _grid = true;
+        private static bool _axes = true, _rules = true, _grid = true, _designations = true;
         public MainWindow()
         {
             InitializeComponent();
@@ -24,15 +24,34 @@ namespace Graph_1_lab
         private void canvas_Loaded(object sender, RoutedEventArgs e)
         {
             StartDraw();
-            ScaleTransform scaleTransform = new ScaleTransform(1.0, 1.0);
-            Canvas.LayoutTransform = scaleTransform;
         }
 
         private void StartDraw()
         {
-            if (_axes) DrawAxes();
-            if (_grid) DrawElipces();
-            if(_rules) DrawRule();
+            if (_axes)
+            {
+                DrawAxes();
+                DrawAxes2();
+            }
+
+            if (_grid)
+            {
+                DrawElipces();
+                DrawGrid();
+            }
+
+            if (_rules)
+            {
+                DrawRule();
+                DrawRule2();
+            }
+
+            if (_designations)
+            {
+                DrawDesignations();
+                DrawDesignations2();
+            }
+            
         }
         private Line Rotate(Line line, int angle)
         {
@@ -112,6 +131,82 @@ namespace Graph_1_lab
             }
             #endregion
         }
+        private void DrawAxes2()
+        {
+            var centerX = (int)Canvas2.ActualWidth / 2;
+            var centerY = (int)Canvas2.ActualHeight / 2;
+            var radius = Math.Min(centerX, centerY) - 10;
+            
+            #region VERTICALAXE
+            var verticalAxis = new Line
+            {
+                Stroke = Brushes.Black,
+                X1 = centerX,
+                Y1 = centerY - radius,
+                X2 = centerX,
+                Y2 = centerY + radius,
+                StrokeThickness = 2,
+            };
+            Canvas2.Children.Add(verticalAxis);
+            
+            var verticalArrowLeft = new Line
+            {
+                Stroke = Brushes.Black,
+                X1 = centerX,
+                Y1 = 10,
+                X2 = centerX - 5,
+                Y2 = 20,
+                StrokeThickness = 2
+            };
+            Canvas2.Children.Add(verticalArrowLeft);
+            
+            var verticalArrowRight = new Line
+            {
+                Stroke = Brushes.Black,
+                X1 = centerX,
+                Y1 = 10,
+                X2 = centerX + 5,
+                Y2 = 20,
+                StrokeThickness = 2
+            };
+            Canvas2.Children.Add(verticalArrowRight);
+            #endregion
+
+            #region  HORIZONTALAXE
+            var horizontalAxis = new Line
+            {
+                Stroke = Brushes.Black,
+                X1 = centerX - radius,
+                Y1 = centerY,
+                X2 = centerX + radius,
+                Y2 = centerY,
+                StrokeThickness = 2
+            };
+            Canvas2.Children.Add(horizontalAxis);
+            
+            var horizontalArrowLeft = new Line
+            {
+                Stroke = Brushes.Black,
+                X1 = centerX * 2 - 10,
+                Y1 = centerY,
+                X2 = centerX * 2 - 20,
+                Y2 = centerY - 5,
+                StrokeThickness = 2
+            };
+            Canvas2.Children.Add(horizontalArrowLeft);
+            
+            var horizontalArrowRight = new Line
+            {
+                Stroke = Brushes.Black,
+                X1 = centerX * 2 - 10,
+                Y1 = centerY,
+                X2 = centerX * 2 - 20,
+                Y2 = centerY + 5,
+                StrokeThickness = 2
+            };
+            Canvas2.Children.Add(horizontalArrowRight);
+            #endregion
+        }
         private void DrawElipces()
         {
             var center = new Point(Canvas.Width / 2, Canvas.Height / 2);
@@ -133,9 +228,45 @@ namespace Graph_1_lab
                 radius += 10;
             }
         }
+        private void DrawGrid()
+        {
+            #region VERTICALGRID
+            for (var i = 10; i < Canvas2.Width; i += 10)
+            {
+                var line = new Line()
+                {
+                    Stroke = Brushes.Black,
+                    X1 = i,
+                    Y1 = 10,
+                    X2 = i,
+                    Y2 = Canvas2.Height - 10,
+                    StrokeThickness = 0.5,
+                    StrokeDashArray = new DoubleCollection() { 4, 4 }
+                };
+                Canvas2.Children.Add(line);
+            }
+            #endregion
+
+            #region HORIZONTALGRID
+            for (var i = 10; i < Canvas2.Height; i += 10)
+            {
+                var line = new Line()
+                {
+                    Stroke = Brushes.Black,
+                    X1 = 10,
+                    Y1 = i,
+                    X2 = Canvas2.Width - 10,
+                    Y2 = i,
+                    StrokeThickness = 0.5,
+                    StrokeDashArray = new DoubleCollection() { 4, 4 }
+                };
+                Canvas2.Children.Add(line);
+            }
+            #endregion
+        }
         private void DrawRule()
         {
-            Point centerX = new Point(Canvas.Width / 2, Canvas.Height / 2 - 5);
+            var centerX = new Point(Canvas.Width / 2, Canvas.Height / 2 - 5);
             #region X_AXE
             for (var i = 0; i < Canvas.Width / 2 - 20; i += 10)
             {
@@ -151,6 +282,155 @@ namespace Graph_1_lab
                 Canvas.Children.Add(division);
             }
             #endregion
+        }
+        private void DrawRule2()
+        {
+            var center = new Point(Canvas.Width / 2, Canvas.Height / 2);
+            #region VERTICALRULE
+            for (var i = 20; i < Canvas2.Width - 20; i += 10)
+            {
+                var line = new Line()
+                {
+                    Stroke = Brushes.Black,
+                    X1 = i,
+                    Y1 = center.Y - 5,
+                    X2 = i,
+                    Y2 = center.Y + 5,
+                    StrokeThickness = 1
+                };
+                Canvas2.Children.Add(line);
+            }
+            #endregion
+
+            #region HORIZONTALRULE
+            for (var i = 30; i < Canvas2.Height - 10; i += 10)
+            {
+                var line = new Line()
+                {
+                    Stroke = Brushes.Black,
+                    X1 = center.X - 5,
+                    Y1 = i,
+                    X2 = center.X + 5,
+                    Y2 = i,
+                    StrokeThickness = 1
+                };
+                Canvas2.Children.Add(line);
+            }
+            #endregion
+        }
+        private void DrawDesignations()
+        {
+            var r0 = new TextBlock()
+            {
+                FontSize = 12,
+                Text = "0"
+            };
+            Canvas.SetTop(r0, 225);
+            Canvas.SetRight(r0, 10);
+            Canvas.Children.Add(r0);
+            
+            var r30 = new TextBlock()
+            {
+                FontSize = 12,
+                Text = "30"
+            };
+            Canvas.SetTop(r30, 110);
+            Canvas.SetRight(r30, 30);
+            Canvas.Children.Add(r30);
+            
+            var r60 = new TextBlock()
+            {
+                FontSize = 12,
+                Text = "60"
+            };
+            Canvas.SetTop(r60, 23);
+            Canvas.SetRight(r60, 120);
+            Canvas.Children.Add(r60);
+            
+            var r90 = new TextBlock()
+            {
+                FontSize = 12,
+                Text = "90"
+            };
+            Canvas.SetTop(r90, 0);
+            Canvas.SetRight(r90, 253);
+            Canvas.Children.Add(r90);
+            
+            var r120 = new TextBlock()
+            {
+                FontSize = 12,
+                Text = "120"
+            };
+            Canvas.SetTop(r120, 23);
+            Canvas.SetLeft(r120, 120);
+            Canvas.Children.Add(r120);
+            
+            var r150 = new TextBlock()
+            {
+                FontSize = 12,
+                Text = "150"
+            };
+            Canvas.SetTop(r150, 110);
+            Canvas.SetLeft(r150, 30);
+            Canvas.Children.Add(r150);
+            
+            var r180 = new TextBlock()
+            {
+                FontSize = 12,
+                Text = "180"
+            };
+            Canvas.SetTop(r180, 225);
+            Canvas.SetLeft(r180, 0);
+            Canvas.Children.Add(r180);
+            
+            var r210 = new TextBlock()
+            {
+                FontSize = 12,
+                Text = "210"
+            };
+            Canvas.SetBottom(r210, 110);
+            Canvas.SetLeft(r210, 30);
+            Canvas.Children.Add(r210);
+            
+            var r240 = new TextBlock()
+            {
+                FontSize = 12,
+                Text = "240"
+            };
+            Canvas.SetBottom(r240, 23);
+            Canvas.SetLeft(r240, 120);
+            Canvas.Children.Add(r240);
+            
+            var r270 = new TextBlock()
+            {
+                FontSize = 12,
+                Text = "270"
+            };
+            Canvas.SetBottom(r270, 0);
+            Canvas.SetLeft(r270, 253);
+            Canvas.Children.Add(r270);
+            
+            var r300 = new TextBlock()
+            {
+                FontSize = 12,
+                Text = "300"
+            };
+            Canvas.SetBottom(r300, 23);
+            Canvas.SetRight(r300, 120);
+            Canvas.Children.Add(r300);
+            
+            var r330 = new TextBlock()
+            {
+                FontSize = 12,
+                Text = "330"
+            };
+            Canvas.SetBottom(r330, 110);
+            Canvas.SetRight(r330, 30);
+            Canvas.Children.Add(r330);
+        }
+        private void DrawDesignations2()
+        {
+            //
         }
         private void DrawHyperbolicSpiral(string a, string stepCount, string step)
         {
@@ -181,7 +461,46 @@ namespace Graph_1_lab
             pathGeometry.Figures.Add(pathFigure);
             path.Data = pathGeometry;
             Canvas.Children.Add(path);
+            if(_step != 0 && _phi != 0)
+                while (angle < _phi)
+                {
+                    var x = center.X + _a *  Math.Cos(angle)/ angle;
+                    var y = center.Y - _a * Math.Sin(angle) / angle;
+                    var lineSegment = new LineSegment(new Point(x, y), true);
+                    pathFigure.Segments.Add(lineSegment);
+  
+                    angle += _step;
+                }
+        }
+        private void DrawHyperbolicSpiral2(string a, string stepCount, string step)
+        {
             
+            var center = new Point(Canvas.Width / 2, Canvas.Height / 2);
+
+            if (a == "") a = "0";
+            if (stepCount == "") stepCount = "0";
+            if (step == "") step = "0";
+            step = step.Replace('.', ',');
+            double.TryParse(a, out _a);
+            double.TryParse(stepCount, out _phi);
+            double.TryParse(step, out _step);
+            double angle =  0.1;
+
+            var path = new Path
+            {
+                Stroke = Brushes.Blue,
+                StrokeThickness = 2
+            };
+
+            var pathGeometry = new PathGeometry();
+            var startPoint = new Point(center.X + _a, center.Y);
+            var pathFigure = new PathFigure
+            {
+                StartPoint = startPoint
+            };
+            pathGeometry.Figures.Add(pathFigure);
+            path.Data = pathGeometry;
+            Canvas2.Children.Add(path);
             if(_step != 0 && _phi != 0)
                 while (angle < _phi)
                 {
@@ -204,6 +523,12 @@ namespace Graph_1_lab
                     StartDraw();
                     DrawHyperbolicSpiral(TextBoxA.Text, TextBoxB.Text, TextBoxStep.Text);
                 }
+                if (Canvas2 != null)
+                {
+                    Canvas2.Children.Clear();
+                    StartDraw();
+                    DrawHyperbolicSpiral2(TextBoxA.Text, TextBoxB.Text, TextBoxStep.Text);
+                }
             }
         }
         
@@ -216,6 +541,12 @@ namespace Graph_1_lab
                     Canvas.Children.Clear();
                     StartDraw();
                     DrawHyperbolicSpiral(alpha, TextBoxB.Text, TextBoxStep.Text);
+                }
+                if (Canvas2 != null)
+                {
+                    Canvas2.Children.Clear();
+                    StartDraw();
+                    DrawHyperbolicSpiral2(alpha, TextBoxB.Text, TextBoxStep.Text);
                 }
             }
         }

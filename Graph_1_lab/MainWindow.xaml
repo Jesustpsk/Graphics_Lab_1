@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Graph_1_lab.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Hyperbolic Spiral" Height="650" Width="800" 
+        Title="Hyperbolic Spiral" Height="650" Width="1500" 
         MinWidth="800" MinHeight="650">
         
     <StackPanel>
@@ -29,33 +29,39 @@
                 <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Label Grid.Column="0" Margin="70 0 0 0">a</Label>
+            <Label Grid.Column="0" Margin="150 0 0 0">a</Label>
             <TextBox Name="TextBoxA" Grid.Row="0" Grid.Column="1" Margin="0,0,0,0" TextChanged="TextBox_a_OnTextChanged"></TextBox>
-            <Label Grid.Row="0" Grid.Column="2" Margin="60 0 0 0">Phi</Label>
-            <Label Grid.Row="1" Grid.Column="3" Margin="7 0 0 0">Inf > Phi > 0</Label>
+            <Label Grid.Row="0" Grid.Column="2" Margin="140 0 0 0">Phi</Label>
+            <Label Grid.Row="1" Grid.Column="3" Margin="46 0 0 0">Inf > Phi > 0</Label>
             <TextBox Name="TextBoxB" Grid.Row="0" Grid.Column="3" Margin="0,0,0,0" TextChanged="TextBox_b_OnTextChanged"></TextBox>
-            <Label Grid.Row="0" Grid.Column="4" Margin="50 0 0 0">Step</Label>
+            <Label Grid.Row="0" Grid.Column="4" Margin="130 0 0 0">Step</Label>
             <TextBox Name="TextBoxStep" Grid.Row="0" Grid.Column="5" Margin="0,0,0,0" TextChanged="TextBox_step_OnTextChanged"></TextBox>
             
             <CheckBox Grid.Row="0" Grid.Column="8" Name="CheckBoxAxes" IsThreeState="False" IsChecked="True" Height="20" Content="Оси" Checked="CBA_OnChecked" Unchecked="CBA_OnUnchecked"/>
             <CheckBox Grid.Row="1" Grid.Column="8" Name="CheckBoxRules" IsThreeState="False" IsChecked="True" Height="20" Content="Линейка" Checked="CBR_OnChecked" Unchecked="CBR_OnUnchecked"/>
             <CheckBox Grid.Row="2" Grid.Column="8" Name="CheckBoxGrid" IsThreeState="False" IsChecked="True" Height="20" Content="Сетка" Checked="CBG_OnChecked" Unchecked="CBG_OnUnchecked"/>
-            
+            <CheckBox Grid.Row="3" Grid.Column="8" Name="CheckBoxDesignations" IsThreeState="False" IsChecked="True" Height="20" Content="Обозначения" Checked="CBG_OnChecked" Unchecked="CBG_OnUnchecked"/>
             
             <Slider Grid.Row ="7" Grid.Column="0" Orientation="Vertical"
                     Height="500" Minimum="0" Maximum="1000000"
                     IsEnabled="False"
-                    Margin="65 0 0 0"
+                    Margin="140 0 0 0"
                     Name="Slider"
                     ValueChanged="Slider_OnValueChanged"
                     ></Slider>
-            <Canvas  Grid.Column="1" Grid.Row="3" Grid.ColumnSpan = "6" Grid.RowSpan="6" Margin="0 10 200 0"
+            <Canvas  Grid.Column="1" Grid.Row="3" Grid.ColumnSpan = "6" Grid.RowSpan="6" Margin="0 10 500 0"
                      
                      Name="Canvas" Height="500" Width="500"
                      MinHeight="0"  Loaded="canvas_Loaded" 
                      ClipToBounds = "True">
             </Canvas>
             
+            <Canvas  Grid.Column="3" Grid.Row="3" Grid.ColumnSpan = "6" Grid.RowSpan="6" Margin="0 10 0 0"
+                     
+                     Name="Canvas2" Height="500" Width="500"
+                     MinHeight="0"  Loaded="canvas_Loaded" 
+                     ClipToBounds = "True">
+            </Canvas>
         </Grid>
             
         </StackPanel>

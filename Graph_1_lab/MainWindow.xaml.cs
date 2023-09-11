@@ -12,7 +12,7 @@ namespace Graph_1_lab
     /// </summary>
     public partial class MainWindow
     {
-        private static double _a = 0, _b = 0, _step = 0;
+        private static double _a = 0, _phi = 0, _step = 0;
         private static bool _axes = true, _rules = true, _grid = true;
         public MainWindow()
         {
@@ -24,6 +24,8 @@ namespace Graph_1_lab
         private void canvas_Loaded(object sender, RoutedEventArgs e)
         {
             StartDraw();
+            ScaleTransform scaleTransform = new ScaleTransform(1.0, 1.0);
+            Canvas.LayoutTransform = scaleTransform;
         }
 
         private void StartDraw()
@@ -150,18 +152,19 @@ namespace Graph_1_lab
             }
             #endregion
         }
-        private void DrawHyperbolicSpiral(string a, string b, string step)
+        private void DrawHyperbolicSpiral(string a, string stepCount, string step)
         {
+            
             var center = new Point(Canvas.Width / 2, Canvas.Height / 2);
 
             if (a == "") a = "0";
-            if (b == "") b = "0";
+            if (stepCount == "") stepCount = "0";
             if (step == "") step = "0";
             step = step.Replace('.', ',');
             double.TryParse(a, out _a);
-            double.TryParse(b, out _b);
+            double.TryParse(stepCount, out _phi);
             double.TryParse(step, out _step);
-            double angle = 0;
+            double angle =  0.1;
 
             var path = new Path
             {
@@ -179,17 +182,15 @@ namespace Graph_1_lab
             path.Data = pathGeometry;
             Canvas.Children.Add(path);
             
-            if(_step != 0)
-                while (startPoint.X > 0 && startPoint.X < Canvas.Width && startPoint.Y > 0 && startPoint.Y < Canvas.Height)
+            if(_step != 0 && _phi != 0)
+                while (angle < _phi)
                 {
-                    var x = center.X + _a * Math.Cosh(angle) * Math.Cos(angle);
-                    var y = center.Y + _b * Math.Cosh(angle) * Math.Sin(angle);
-  
+                    var x = center.X + _a *  Math.Cos(angle)/ angle;
+                    var y = center.Y - _a * Math.Sin(angle) / angle;
                     var lineSegment = new LineSegment(new Point(x, y), true);
                     pathFigure.Segments.Add(lineSegment);
   
                     angle += _step;
-                    startPoint = new Point(x, y);
                 }
         }
 
@@ -201,7 +202,20 @@ namespace Graph_1_lab
                 {
                     Canvas.Children.Clear();
                     StartDraw();
-                    DrawHyperbolicSpiral(TextBoxB.Text, TextBoxA.Text, TextBoxStep.Text);
+                    DrawHyperbolicSpiral(TextBoxA.Text, TextBoxB.Text, TextBoxStep.Text);
+                }
+            }
+        }
+        
+        private void CompleteChanges(string alpha)
+        {
+            if (TextBoxA != null && TextBoxB != null && TextBoxStep != null)
+            {
+                if (Canvas != null)
+                {
+                    Canvas.Children.Clear();
+                    StartDraw();
+                    DrawHyperbolicSpiral(alpha, TextBoxB.Text, TextBoxStep.Text);
                 }
             }
         }
@@ -209,14 +223,47 @@ namespace Graph_1_lab
         #region TEXTCHANGE
         private void TextBox_a_OnTextChanged(object sender, TextChangedEventArgs e)
         {
+            Slider.Minimum = String.IsNullOrEmpty(TextBoxA.Text) ? 0 : Convert.ToInt32(TextBoxA.Text);
+            if (String.IsNullOrEmpty(TextBoxA.Text) || String.IsNullOrEmpty(TextBoxB.Text) || String.IsNullOrEmpty(TextBoxStep.Text))
+            {
+                Slider.IsEnabled = false;
+                Slider.Value = 0;
+            }
+            else
+            {
+                Slider.IsEnabled = true;
+                Slider.Value = Slider.Minimum;
+            }
             CompleteChanges();
         }
         private void TextBox_b_OnTextChanged(object sender, TextChangedEventArgs e)
         {
+            Slider.Maximum = String.IsNullOrEmpty(TextBoxB.Text) ? 0 : Convert.ToInt32(TextBoxB.Text) * 200;
+            if (String.IsNullOrEmpty(TextBoxA.Text) || String.IsNullOrEmpty(TextBoxB.Text) || String.IsNullOrEmpty(TextBoxStep.Text))
+            {
+                Slider.IsEnabled = false;
+                Slider.Value = 0;
+            }
+            else
+            {
+                Slider.IsEnabled = true;
+                Slider.Value = Slider.Minimum;
+            }
+
             CompleteChanges();
         }
         private void TextBox_step_OnTextChanged(object sender, TextChangedEventArgs e)
         {
+            if (String.IsNullOrEmpty(TextBoxA.Text) || String.IsNullOrEmpty(TextBoxB.Text) || String.IsNullOrEmpty(TextBoxStep.Text))
+            {
+                Slider.IsEnabled = false;
+                Slider.Value = 0;
+            }
+            else
+            {
+                Slider.IsEnabled = true;
+                Slider.Value = Slider.Minimum;
+            }
             CompleteChanges();
         }
         #endregion
@@ -253,5 +300,11 @@ namespace Graph_1_lab
             CompleteChanges();
         }
         #endregion
+        
+        private void Slider_OnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            var alpha = Convert.ToInt32(Slider.Value).ToString();
+            CompleteChanges(alpha);
+        }
     }
 }

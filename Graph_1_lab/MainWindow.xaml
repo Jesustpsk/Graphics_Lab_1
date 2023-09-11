@@ -40,7 +40,7 @@
             <CheckBox Grid.Row="0" Grid.Column="8" Name="CheckBoxAxes" IsThreeState="False" IsChecked="True" Height="20" Content="Оси" Checked="CBA_OnChecked" Unchecked="CBA_OnUnchecked"/>
             <CheckBox Grid.Row="1" Grid.Column="8" Name="CheckBoxRules" IsThreeState="False" IsChecked="True" Height="20" Content="Линейка" Checked="CBR_OnChecked" Unchecked="CBR_OnUnchecked"/>
             <CheckBox Grid.Row="2" Grid.Column="8" Name="CheckBoxGrid" IsThreeState="False" IsChecked="True" Height="20" Content="Сетка" Checked="CBG_OnChecked" Unchecked="CBG_OnUnchecked"/>
-            <CheckBox Grid.Row="3" Grid.Column="8" Name="CheckBoxDesignations" IsThreeState="False" IsChecked="True" Height="20" Content="Обозначения" Checked="CBG_OnChecked" Unchecked="CBG_OnUnchecked"/>
+            <CheckBox Grid.Row="3" Grid.Column="8" Name="CheckBoxDesignations" IsThreeState="False" IsChecked="True" Height="20" Content="Обозначения" Checked="CBD_OnChecked" Unchecked="CBD_OnUnchecked"/>
             
             <Slider Grid.Row ="7" Grid.Column="0" Orientation="Vertical"
                     Height="500" Minimum="0" Maximum="1000000"

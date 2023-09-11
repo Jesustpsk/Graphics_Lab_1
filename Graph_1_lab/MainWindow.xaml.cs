@@ -630,6 +630,17 @@ namespace Graph_1_lab
             _grid = false;
             CompleteChanges();
         }
+        private void CBD_OnChecked(object sender, RoutedEventArgs e)
+        {
+            _designations = true;
+            CompleteChanges();
+        }
+
+        private void CBD_OnUnchecked(object sender, RoutedEventArgs e)
+        {
+            _designations = false;
+            CompleteChanges();
+        }
         #endregion
         
         private void Slider_OnValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -637,5 +648,7 @@ namespace Graph_1_lab
             var alpha = Convert.ToInt32(Slider.Value).ToString();
             CompleteChanges(alpha);
         }
+
+        
     }
 }

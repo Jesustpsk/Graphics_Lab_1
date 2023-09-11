@@ -43,7 +43,7 @@
             <CheckBox Grid.Row="3" Grid.Column="8" Name="CheckBoxDesignations" IsThreeState="False" IsChecked="True" Height="20" Content="Обозначения" Checked="CBD_OnChecked" Unchecked="CBD_OnUnchecked"/>
             
             <Slider Grid.Row ="7" Grid.Column="0" Orientation="Vertical"
-                    Height="500" Minimum="-1000000" Maximum="1000000"
+                    Height="500" Minimum="0" Maximum="1000000"
                     IsEnabled="False"
                     Margin="140 0 0 0"
                     Name="Slider"

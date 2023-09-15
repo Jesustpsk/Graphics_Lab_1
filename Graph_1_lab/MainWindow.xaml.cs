@@ -453,7 +453,8 @@ namespace Graph_1_lab
             };
 
             var pathGeometry = new PathGeometry();
-            var startPoint = new Point(center.X + _a, center.Y);
+            var startPoint = new Point(center.X + _a * Math.Cos(angle) / angle, center.Y - _a * Math.Sin(angle) / angle);
+            angle += _step;
             var pathFigure = new PathFigure
             {
                 StartPoint = startPoint
@@ -493,7 +494,8 @@ namespace Graph_1_lab
             };
 
             var pathGeometry = new PathGeometry();
-            var startPoint = new Point(center.X + _a, center.Y);
+            var startPoint = new Point(center.X + _a * Math.Cos(angle) / angle, center.Y - _a * Math.Sin(angle) / angle);
+            angle += _step;
             var pathFigure = new PathFigure
             {
                 StartPoint = startPoint

@@ -3,6 +3,8 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using static System.Int32;
+using static System.String;
 
 
 namespace Graph_1_lab
@@ -444,7 +446,7 @@ namespace Graph_1_lab
             double.TryParse(a, out _a);
             double.TryParse(stepCount, out _phi);
             double.TryParse(step, out _step);
-            double angle =  0.1;
+            var angle = 0.1;
 
             var path = new Path
             {
@@ -485,7 +487,7 @@ namespace Graph_1_lab
             double.TryParse(a, out _a);
             double.TryParse(stepCount, out _phi);
             double.TryParse(step, out _step);
-            double angle =  0.1;
+            var angle = 0.1;
 
             var path = new Path
             {
@@ -556,8 +558,8 @@ namespace Graph_1_lab
         #region TEXTCHANGE
         private void TextBox_a_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            Slider.Minimum = String.IsNullOrEmpty(TextBoxA.Text) ? 0 : Convert.ToInt32(TextBoxA.Text);
-            if (String.IsNullOrEmpty(TextBoxA.Text) || String.IsNullOrEmpty(TextBoxB.Text) || String.IsNullOrEmpty(TextBoxStep.Text))
+            Slider.Minimum = IsNullOrEmpty(TextBoxA.Text) ? 0 : Convert.ToInt32(TextBoxA.Text);
+            if (IsNullOrEmpty(TextBoxA.Text) || IsNullOrEmpty(TextBoxB.Text) || IsNullOrEmpty(TextBoxStep.Text))
             {
                 Slider.IsEnabled = false;
                 Slider.Value = 0;
@@ -571,11 +573,11 @@ namespace Graph_1_lab
         }
         private void TextBox_b_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            if (Int32.TryParse(TextBoxB.Text, out int num))
+            if (TryParse(TextBoxB.Text, out var num))
             {
-                Slider.Maximum = String.IsNullOrEmpty(TextBoxB.Text) ? 0 : Convert.ToInt32(TextBoxB.Text) * 200;
-                if (String.IsNullOrEmpty(TextBoxA.Text) || String.IsNullOrEmpty(TextBoxB.Text) ||
-                    String.IsNullOrEmpty(TextBoxStep.Text))
+                Slider.Maximum = IsNullOrEmpty(TextBoxB.Text) ? 0 : Convert.ToInt32(TextBoxB.Text) * 200;
+                if (IsNullOrEmpty(TextBoxA.Text) || IsNullOrEmpty(TextBoxB.Text) ||
+                    IsNullOrEmpty(TextBoxStep.Text))
                 {
                     Slider.IsEnabled = false;
                     Slider.Value = 0;
@@ -591,7 +593,7 @@ namespace Graph_1_lab
         }
         private void TextBox_step_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            if (String.IsNullOrEmpty(TextBoxA.Text) || String.IsNullOrEmpty(TextBoxB.Text) || String.IsNullOrEmpty(TextBoxStep.Text))
+            if (IsNullOrEmpty(TextBoxA.Text) || IsNullOrEmpty(TextBoxB.Text) || IsNullOrEmpty(TextBoxStep.Text))
             {
                 Slider.IsEnabled = false;
                 Slider.Value = 0;

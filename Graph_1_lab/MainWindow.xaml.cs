@@ -55,7 +55,7 @@ namespace Graph_1_lab
             }
             
         }
-        private Line Rotate(Line line, int angle)
+        private static Line Rotate(Line line, int angle)
         {
             var r = new Point(250, 250);
             var ang = angle;
@@ -125,6 +125,7 @@ namespace Graph_1_lab
             };
             Canvas.Children.Add(horizontalArrowRight);
             #endregion
+            
 
             #region ROTATEDAXES
             for (var i = 30; i <= 150; i+=30)
@@ -215,7 +216,7 @@ namespace Graph_1_lab
             double radius = 10;
             while (radius < Canvas.Width / 2 - 10)
             {
-                Ellipse circle = new Ellipse
+                var circle = new Ellipse
                 {
                     Width = radius * 2,
                     Height = radius * 2,
@@ -248,6 +249,7 @@ namespace Graph_1_lab
                 Canvas2.Children.Add(line);
             }
             #endregion
+            
 
             #region HORIZONTALGRID
             for (var i = 10; i < Canvas2.Height; i += 10)
@@ -383,6 +385,7 @@ namespace Graph_1_lab
             };
             Canvas.SetTop(r180, 225);
             Canvas.SetLeft(r180, 0);
+            
             Canvas.Children.Add(r180);
             
             var r210 = new TextBlock()
@@ -436,7 +439,6 @@ namespace Graph_1_lab
         }
         private void DrawHyperbolicSpiral(string a, string stepCount, string step)
         {
-            
             var center = new Point(Canvas.Width / 2, Canvas.Height / 2);
 
             if (a == "") a = "0";
@@ -447,7 +449,6 @@ namespace Graph_1_lab
             double.TryParse(stepCount, out _phi);
             double.TryParse(step, out _step);
             var angle = 0.1;
-
             var path = new Path
             {
                 Stroke = Brushes.Red,
@@ -455,7 +456,7 @@ namespace Graph_1_lab
             };
 
             var pathGeometry = new PathGeometry();
-            var startPoint = new Point(center.X + _a * Math.Cos(angle) / angle, center.Y - _a * Math.Sin(angle) / angle);
+            var startPoint = new Point(center.X + _a * (Math.Cos(angle) / angle), center.Y - _a * (Math.Sin(angle) / angle));
             angle += _step;
             var pathFigure = new PathFigure
             {
@@ -467,8 +468,8 @@ namespace Graph_1_lab
             if(_step != 0 && _phi != 0 && _phi > 0)
                 while (angle < _phi)
                 {
-                    var x = center.X + _a *  Math.Cos(angle)/ angle;
-                    var y = center.Y - _a * Math.Sin(angle) / angle;
+                    var x = center.X + _a * (Math.Cos(angle) / angle);
+                    var y = center.Y - _a * (Math.Sin(angle) / angle);
                     var lineSegment = new LineSegment(new Point(x, y), true);
                     pathFigure.Segments.Add(lineSegment);
   
@@ -477,7 +478,6 @@ namespace Graph_1_lab
         }
         private void DrawHyperbolicSpiral2(string a, string stepCount, string step)
         {
-            
             var center = new Point(Canvas.Width / 2, Canvas.Height / 2);
 
             if (a == "") a = "0";
@@ -494,9 +494,10 @@ namespace Graph_1_lab
                 Stroke = Brushes.Blue,
                 StrokeThickness = 2
             };
+            
 
             var pathGeometry = new PathGeometry();
-            var startPoint = new Point(center.X + _a * Math.Cos(angle) / angle, center.Y - _a * Math.Sin(angle) / angle);
+            var startPoint = new Point(center.X + _a * (Math.Cos(angle) / angle), center.Y - _a * (Math.Sin(angle) / angle));
             angle += _step;
             var pathFigure = new PathFigure
             {
@@ -508,8 +509,8 @@ namespace Graph_1_lab
             if(_step != 0 && _phi != 0)
                 while (angle < _phi)
                 {
-                    var x = center.X + _a *  Math.Cos(angle)/ angle;
-                    var y = center.Y - _a * Math.Sin(angle) / angle;
+                    var x = center.X + _a * (Math.Cos(angle) / angle);
+                    var y = center.Y - _a * (Math.Sin(angle) / angle);
                     var lineSegment = new LineSegment(new Point(x, y), true);
                     pathFigure.Segments.Add(lineSegment);
   
@@ -519,7 +520,7 @@ namespace Graph_1_lab
 
         private void CompleteChanges()
         {
-            if (TextBoxA != null && TextBoxB != null && TextBoxStep != null)
+            if (TextBoxA.Text != "" && TextBoxB.Text != "" && TextBoxStep.Text != "")
             {
                 if (Canvas != null)
                 {
@@ -538,7 +539,7 @@ namespace Graph_1_lab
         
         private void CompleteChanges(string alpha)
         {
-            if (TextBoxA != null && TextBoxB != null && TextBoxStep != null)
+            if (TextBoxA.Text != "" && TextBoxB.Text != "" && TextBoxStep.Text != "")
             {
                 if (Canvas != null)
                 {
@@ -606,6 +607,7 @@ namespace Graph_1_lab
             CompleteChanges();
         }
         #endregion
+        
 
         #region CHECKBOX
         private void CBA_OnChecked(object sender, RoutedEventArgs e)
@@ -656,7 +658,5 @@ namespace Graph_1_lab
             var alpha = Convert.ToInt32(Slider.Value).ToString();
             CompleteChanges(alpha);
         }
-
-        
     }
 }
